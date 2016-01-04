@@ -1,5 +1,5 @@
 var config = {
-  geojson: "assets/js/birchplot.geojson", //birchplot.js needs to be saved to birchplot.geojson
+  geojson: "birchplot.geojson", //birchplot.js needs to be saved to birchplot.geojson
   title: "Guardian Program Data Management System",
   layerName: "Plots",
   hoverProperty: "Tap_Class", //add new property
