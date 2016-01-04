@@ -1,26 +1,62 @@
 var config = {
-  geojson: "assets/js/trees.geojson",
-  title: "Congress Park Trees",
-  layerName: "Trees",
-  hoverProperty: "species_sim",
-  sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
+  geojson: "assets/js/birchplot.geojson", //birchplot.js needs to be saved to birchplot.geojson
+  title: "Guardian Program Data Management System",
+  layerName: "Plots",
+  hoverProperty: "Tap_Class", //add new property
+  sortProperty: "Tap_Stem", //
   sortOrder: "desc"
 };
 
 var properties = [{
-  value: "fulcrum_id",
-  label: "Fulcrum ID",
+  value: "SITE_PLOT",
+  label: "Plot Unique ID",
   table: {
-    visible: false,
+    visible: true,
     sortable: true
   },
   filter: {
-    type: "string"
-  },
-  info: false
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
+  }
 },
 {
-  value: "status",
+  value: "SITE_ID",
+  label: "Site Identifier",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
+  }
+},
+{
+  value: "Plot_ID",
+  label: "Plot Identifier",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
+  }
+},
+{
+  value: "Status",
   label: "Status",
   table: {
     visible: true,
@@ -36,8 +72,8 @@ var properties = [{
   }
 },
 {
-  value: "congress_park_inventory_zone",
-  label: "Inventory Zone",
+  value: "Forest_Nam",
+  label: "Forest Name",
   table: {
     visible: true,
     sortable: true
@@ -52,52 +88,72 @@ var properties = [{
   }
 },
 {
-  value: "2012_inventory_number",
-  label: "Inventory Number",
+  value: "Forest_num",
+  label: "Forest Code",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
-    type: "integer"
+    type: "integer",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
-  value: "species_sim",
-  label: "Species",
+  value: "Tap_Stem",
+  label: "Stem Density (Trees/Ha) - Tap",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "integer",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
-  value: "circumference_2012_inches_at_breast_height_",
-  label: "Circumference (inches)",
+  value: "Tap_DBH",
+  label: "DBH Average (cm) - Tap",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
-    type: "integer"
+    type: "integer",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
-  value: "dbh_2012_inches_diameter_at_breast_height_46",
-  label: "DBH (inches)",
+  value: "HA",
+  label: "Site Size (Ha)",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
-    type: "integer"
+    type: "integer",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
-  value: "plaque",
-  label: "Plaque",
+  value: "Access1km",
+  label: "Site Accessibility within 1 km",
   table: {
     visible: true,
     sortable: true
@@ -107,8 +163,42 @@ var properties = [{
     input: "radio",
     operators: ["equal"],
     values: {
-      "yes": "Yes",
-      "no": "No"
+      "y": "Yes",
+      "null": "No"
+    }
+  }
+},
+{
+  value: "Tap_Class",
+  label: "Tappable",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    input: "radio",
+    operators: ["equal"],
+    values: {
+      "Tap": "Yes",
+      "No Tap": "No"
+    }
+  }
+},
+{
+  value: "Prem_Class",
+  label: "Monitor for Growth 1-5 years",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    input: "radio",
+    operators: ["equal"],
+    values: {
+      "Monitor": "Yes",
+      "No Monitor": "No"
     }
   }
 },
@@ -122,8 +212,8 @@ var properties = [{
   filter: {
     type: "string"
   }
-},
-{
+}
+/*{
   value: "photos_url",
   label: "Photos",
   table: {
@@ -132,9 +222,9 @@ var properties = [{
     formatter: urlFormatter
   },
   filter: false
-}];
+}*/];
 
-function drawCharts() {
+/*function drawCharts() {
   // Status
   $(function() {
     var result = alasql("SELECT status AS label, COUNT(*) AS total FROM ? GROUP BY status", [features]);
@@ -214,7 +304,7 @@ function drawCharts() {
         }
     });
   });
-}
+}*/
 
 $(function() {
   $(".title").html(config.title);
