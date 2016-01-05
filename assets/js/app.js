@@ -129,6 +129,7 @@ var properties = [{
   },
   filter: {
     type: "integer"
+  }
 },
 {
   value: "Access1km",
