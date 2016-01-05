@@ -393,12 +393,7 @@ var streetsLayer = L.tileLayer('http://{s}.tiles.mapbox.com/v4/mapbox.streets/{z
 });
 
 
-var satelliteLayer = L.tileLayer('http://{s}.tiles.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWNvdHJ1c3QiLCJhIjoibGo4TG5nOCJ9.QJnT2dgjL4_4EA7WlK8Zkw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="http://mapbox.com">Mapbox</a>'
-});
+var satelliteLayer = L.esri.basemapLayer('Imagery');
 
 
 var highlightLayer = L.geoJson(null, {
