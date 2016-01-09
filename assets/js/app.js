@@ -8,6 +8,14 @@ var config = {
 };
 
 var properties = [{
+value: "OBJECTID",
+  label: "Table Unique ID",
+  table: {
+    visible: false,
+    sortable: true
+  }
+},
+{
   value: "SITE_PLOT",
   label: "Plot Unique ID",
   table: {
@@ -51,8 +59,39 @@ var properties = [{
   }
 },
 {
+  value: "DateRecord",
+  label: "Date Recorded",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
+  }
+},
+{
   value: "Status",
-  label: "Status",
+  label: "Site Status",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
+  }
+},
+  value: "PlotStatus",
+  label: "Plot Status",
   table: {
     visible: true,
     sortable: true
@@ -192,7 +231,43 @@ var properties = [{
   filter: {
     type: "string"
   }
-}
+},
+{
+  value: "Dis_Chap",
+  label: "Distance to Chapleau, ON",
+  table: {
+    visible: false,
+    sortable: true
+  }
+},
+  value: "Dis_TL",
+  label: "Distance to Trout Lake, ON",
+  table: {
+    visible: false,
+    sortable: true
+  }
+},
+  value: "SPCOMP",
+  label: "Species Composition",
+  table: {
+    visible: false,
+    sortable: true
+  }
+},
+  value: "GPS_CodeG",
+  label: "Team",
+  table: {
+    visible: false,
+    sortable: true
+  }
+},
+value: "SiteAccess",
+  label: "Access Type",
+  table: {
+    visible: false,
+    sortable: true
+  }
+},
 /*{
   value: "photos_url",
   label: "Photos",
