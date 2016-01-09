@@ -241,6 +241,7 @@ value: "OBJECTID",
     sortable: true
   }
 },
+  {
   value: "Dis_TL",
   label: "Distance to Trout Lake, ON",
   table: {
@@ -248,6 +249,7 @@ value: "OBJECTID",
     sortable: true
   }
 },
+{
   value: "SPCOMP",
   label: "Species Composition",
   table: {
@@ -255,6 +257,7 @@ value: "OBJECTID",
     sortable: true
   }
 },
+{
   value: "GPS_CodeG",
   label: "Team",
   table: {
@@ -262,7 +265,8 @@ value: "OBJECTID",
     sortable: true
   }
 },
-value: "SiteAccess",
+{
+  value: "SiteAccess",
   label: "Access Type",
   table: {
     visible: false,
