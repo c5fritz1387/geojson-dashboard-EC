@@ -90,6 +90,7 @@ value: "OBJECTID",
     values: []
   }
 },
+  {
   value: "PlotStatus",
   label: "Plot Status",
   table: {
