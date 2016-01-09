@@ -118,7 +118,7 @@ value: "OBJECTID",
     input: "checkbox",
     vertical: true,
     multiple: true,
-    operators: ["in", "not_in", "equal", "not_equal"],
+    operators: ["in"],
     values: []
   }
 },
