@@ -113,14 +113,14 @@ value: "OBJECTID",
     visible: true,
     sortable: true
   },
-  filter: {
+  /*filter: {
     type: "string",
     input: "checkbox",
     vertical: true,
     multiple: true,
-    operators: ["in"],
+    operators: ["in", "not_in", "equal", "not_equal"],
     values: []
-  }
+  }*/
 },
 {
   value: "Forest_num",
