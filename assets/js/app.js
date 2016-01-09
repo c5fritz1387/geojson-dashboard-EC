@@ -31,7 +31,7 @@ value: "OBJECTID",
     values: []
   }
 },
-{
+/*{
   value: "SITE_ID",
   label: "Site Identifier",
   table: {
@@ -113,14 +113,14 @@ value: "OBJECTID",
     visible: true,
     sortable: true
   },
-  /*filter: {
+  filter: {
     type: "string",
     input: "checkbox",
     vertical: true,
     multiple: true,
     operators: ["in", "not_in", "equal", "not_equal"],
     values: []
-  }*/
+  }
 },
 {
   value: "Forest_num",
