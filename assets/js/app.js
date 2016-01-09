@@ -75,7 +75,7 @@ value: "OBJECTID",
   }
 },
 {
-  value: "Status",
+  value: "SiteStatus",
   label: "Site Status",
   table: {
     visible: true,
