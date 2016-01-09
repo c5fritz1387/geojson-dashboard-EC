@@ -138,7 +138,7 @@ value: "OBJECTID",
     values: []
   }
 },
-{
+/*{
   value: "Tap_Stem",
   label: "Stem Density (Trees/Ha) - Tap",
   table: {
@@ -272,7 +272,7 @@ value: "OBJECTID",
     visible: false,
     sortable: true
   }
-},
+},*/
 /*{
   value: "photos_url",
   label: "Photos",
