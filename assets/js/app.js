@@ -8,14 +8,6 @@ var config = {
 };
 
 var properties = [{
-value: "OBJECTID",
-  label: "Table Unique ID",
-  table: {
-    visible: false,
-    sortable: true
-  }
-},
-{
   value: "SITE_PLOT",
   label: "Plot Unique ID",
   table: {
@@ -23,15 +15,11 @@ value: "OBJECTID",
     sortable: true
   },
   filter: {
-    type: "string",
-    input: "checkbox",
-    vertical: true,
-    multiple: true,
-    operators: ["in", "not_in", "equal", "not_equal", "greater"],
-    values: []
-  }
+    type: "string"
+  },
+  info: false
 },
-/*{
+{
   value: "SITE_ID",
   label: "Site Identifier",
   table: {
@@ -138,7 +126,7 @@ value: "OBJECTID",
     values: []
   }
 },
-/*{
+{
   value: "Tap_Stem",
   label: "Stem Density (Trees/Ha) - Tap",
   table: {
@@ -223,17 +211,6 @@ value: "OBJECTID",
   }
 },
 {
-  value: "notes_other_information",
-  label: "Notes",
-  table: {
-    visible: false,
-    sortable: true
-  },
-  filter: {
-    type: "string"
-  }
-},
-{
   value: "Dis_Chap",
   label: "Distance to Chapleau, ON",
   table: {
@@ -272,17 +249,7 @@ value: "OBJECTID",
     visible: false,
     sortable: true
   }
-},*/
-/*{
-  value: "photos_url",
-  label: "Photos",
-  table: {
-    visible: true,
-    sortable: true,
-    formatter: urlFormatter
-  },
-  filter: false
-}*/];
+}];
 
 /*function drawCharts() {
   // Status
@@ -458,9 +425,6 @@ function buildConfig() {
   buildFilters();
   buildTable();
 }
-
-
-
 
 // Basemap Layers
 
