@@ -7,6 +7,12 @@ var config = {
   sortOrder: "desc"
 };
 
+var config_ccgp = {
+  geojson: "assets/js/ccgp.geojson", //birchplot.js needs to be saved to birchplot.geojson
+  title: "Guardian Program Data Management System",
+  layerName: "Chapleau Crown Game Preserve",
+};
+
 var properties = [{
   value: "SITE_PLOT",
   label: "Plot Unique ID",
@@ -464,6 +470,8 @@ var highlightLayer = L.geoJson(null, {
   }
 });
 
+
+
 var featureLayer = L.geoJson(null, {
   filter: function(feature, layer) {
     return feature.geometry.coordinates[0] !== 0 && feature.geometry.coordinates[1] !== 0;
@@ -510,6 +518,19 @@ var featureLayer = L.geoJson(null, {
   }
 });
 
+/*var ccgp = L.geoJson(null, {
+  filter: function(feature, layer) {
+    return feature.geometry.coordinates[0] !== 0 && feature.geometry.coordinates[1] !== 0;
+  },
+  style: function (feature) {
+        return {
+            color: '#43754C',
+            weight: 1,
+            fillOpacity: .4,
+            opacity: .3};
+    }
+});*/
+
 // Fetch the GeoJSON file
 $.getJSON(config.geojson, function (data) {
   geojson = data;
@@ -520,6 +541,32 @@ $.getJSON(config.geojson, function (data) {
   buildConfig();
   $("#loading-mask").hide();
 });
+
+$.getJSON("assets/js/ccgp.geojson",function(data){
+    // add GeoJSON layer to the map once the file is loaded
+    L.geoJson(data, {
+      style: function (feature) {
+        return {
+            color: '#ff9999',
+            weight: 2,
+            fillOpacity: .0,
+            opacity: .8};
+    }
+    }).addTo(map);
+  });
+
+$.getJSON("assets/js/ir.geojson",function(data){
+    // add GeoJSON layer to the map once the file is loaded
+    L.geoJson(data, {
+      style: function (feature) {
+        return {
+            color: '#4631BD',
+            weight: 1,
+            fillOpacity: .7};
+    }
+    }).addTo(map);
+  });
+ 
 
 var map = L.map("map", {
   layers: [satelliteLayer, featureLayer, highlightLayer]
@@ -558,8 +605,9 @@ var baseLayers = {
   "Aerial Imagery": satelliteLayer
 };
 var overlayLayers = {
-  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
+  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
 };
+
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
 }).addTo(map);
@@ -803,3 +851,4 @@ $("#download-pdf-btn").click(function() {
 $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
+
