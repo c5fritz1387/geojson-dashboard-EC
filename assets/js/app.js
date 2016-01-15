@@ -392,6 +392,24 @@ function drawCharts() {
                 columns: columns
             }
         });
+
+        var margin = {top: 80, right: 180, bottom: 80, left: 180},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+        var svg = d3.select("#size-chart").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        svg.append("text")
+        .attr("class", "title")
+        .attr("x", x(data[0].name))
+        .attr("y", -26)
+        .text("Why Are We Leaving Facebook?");
+
+
     });
 
     /*
