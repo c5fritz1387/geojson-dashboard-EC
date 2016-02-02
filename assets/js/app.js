@@ -393,21 +393,19 @@ function drawCharts() {
             }
         });
 
-        var margin = {top: 80, right: 180, bottom: 80, left: 180},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        //append custom text 
+        /*var margin = {top: 0, right: 0, bottom: 0, left: 0},
+        width = 300;
+        height = 200;
 
         var svg = d3.select("#size-chart").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width")
+        .attr("height")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         svg.append("text")
-        .attr("class", "title")
-        .attr("x", x(data[0].name))
-        .attr("y", -26)
-        .text("Why Are We Leaving Facebook?");
+        .text("Why Are We Leaving Facebook?");*/
 
 
     });
@@ -699,6 +697,7 @@ $.getJSON(config_field.geojson, function(data) {
         return feature.properties;
     });
     fieldfeatureLayer.addData(data);
+    console.log('added fieldfeatureLayer')
 
     //add clusterer
     clusters.addLayer(fieldfeatureLayer);
@@ -727,10 +726,34 @@ var map = L.map("map", {
 }).fitWorld();
 
 
+
 // ESRI geocoder
 var searchControl = L.esri.Geocoding.Controls.geosearch({
     useMapBounds: 17
 }).addTo(map);
+
+//legend
+/*var legend = L.control({position: 'bottomleft'});
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'legend'),
+        grades = [58, 72, 90, 100, 114, 128],
+        labels = [];
+    div.innerHTML += '<b>Site Stem Density<br>(Trees/HA)</b><br>';
+    
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length - 1; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + '&ndash;' + grades[i + 1] + '<br>' ;
+    }
+
+    return div;
+};
+
+legend.addTo(map);*/
+
 
 // Info control
 var info = L.control({
@@ -768,6 +791,12 @@ var overlayLayers = {
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
     collapsed: isCollapsed
 }).addTo(map);
+
+L.easyPrint({
+            title: 'My awesome print button',
+            elementsToHide: 'p, h2, .gitButton'
+        }).addTo(map);
+
 
 // Filter table to only show features in current map bounds
 map.on("moveend", function(e) {
