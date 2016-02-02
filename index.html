@@ -20,8 +20,8 @@
     <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css'/>
     <link rel='stylesheet'href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css'/>
     <link rel="stylesheet" href="assets/vendor/jQuery-QueryBuilder/query-builder.default.min.css">
+    <link rel="stylesheet" href="assets/vendor/leaflet/leaflet-print/dist/easyPrint.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="assets/css/MarkerCluster.css">
     <!--link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.css' rel='stylesheet' /-->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -105,26 +105,34 @@
           <div class="modal-body">
             <ul class="nav nav-tabs" id="aboutTabs">
               <li class="active"><a href="#about-tab" data-toggle="tab"><i class="fa fa-question-circle"></i> About the project</a></li>
-              <li><a href="#feature-tab" data-toggle="tab"><i class="fa fa-gear"></i> Features</a></li>
+              <li><a href="#feature-tab" data-toggle="tab"><i class="fa fa-gear"></i> How to </a></li>
             </ul>
             <div class="tab-content" id="aboutTabsContent">
               <div class="tab-pane fade active in" id="about-tab">
                 <p>A flexible geospatial data viewer for managers and stakeholders involved with the Northeast Superior Regional Chiefs Forum (NSRCF) Guardan Program. Dashboard is based on the configurable framework for building a geographic "data dashboard" from a GeoJSON file, created by developers at Fulcrum. Open source, MIT licensed, and available on <a href="https://github.com/fulcrumapp/geojson-dashboard" target="_blank">GitHub</a>.</p>
-                <div class="panel panel-primary">
+                 <div class="panel panel-primary">
                   <div class="panel-heading">Features</div>
                   <ul class="list-group">
-                    <li class="list-group-item">Flexible template built on active open source components</li>
-                    <li class="list-group-item">Entirely client-side, can be hosted for free on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></li>
-                    <li class="list-group-item">Built on the incredibly popular <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> UI framework</li>
-                    <li class="list-group-item">Maps via <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, the leading open source JavaScript mapping library</li>
-                    <li class="list-group-item">Interactive data table with sorting, searching, column toggling, and data export via the <a href="http://bootstrap-table.wenzhixin.net.cn/" target="_blank">Bootstrap Table</a> plugin</li>
-                    <li class="list-group-item">Advanced, interactive GeoJSON data querying that integrates <a href="http://mistic100.github.io/jQuery-QueryBuilder/index.html" target="_blank">jQuery QueryBuilder</a> with <a href="http://alasql.org/" target="_blank">AlaSQL</a></li>
+                    <li class="list-group-item">Built using active open source components</li>
+                    <li class="list-group-item">Enables users to visualize data from Summer 2015 Guardian program </li>
+                    <!--li class="list-group-item"></li-->
+                    <li class="list-group-item">Interactive data table with sorting, searching, column toggling, and data export</li>
                     <li class="list-group-item">Advanced charting via <a href="http://c3js.org/" target="_blank">C3.js</a>, the D3-based reusable chart library</li>
                   </ul>
                 </div>
               </div>
               <div class="tab-pane fade" id="feature-tab" >
-                <p>Add some content</p>
+                <p>A flexible geospatial data viewer for managers and stakeholders involved with the Northeast Superior Regional Chiefs Forum (NSRCF) Guardan Program. Dashboard is based on the configurable framework for building a geographic "data dashboard" from a GeoJSON file, created by developers at Fulcrum. Open source, MIT licensed, and available on.</p>
+                <div class="panel panel-primary">
+                  <div class="panel-heading">Features</div>
+                  <ul class="list-group">
+                    <li class="list-group-item">Built using active open source components</li>
+                    <li class="list-group-item">Enables users to visualize data from Summer 2015 Guardian program </li>
+                    <!--li class="list-group-item"></li-->
+                    <li class="list-group-item">Interactive data table with sorting, searching, column toggling, and data export</li>
+                    <li class="list-group-item">Advanced charting via <a href="http://c3js.org/" target="_blank">C3.js</a>, the D3-based reusable chart library</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -216,6 +224,7 @@
     <script src="assets/vendor/tableExport/libs/html2canvas/html2canvas.min.js"></script>
     <script src="assets/vendor/tableExport/libs/jsPDF/jspdf.min.js"></script>
     <script src="assets/vendor/tableExport/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="assets/vendor/leaflet/leaflet-print/dist/leaflet.easyPrint.js"></script>
     <script src="assets/js/leaflet-markercluster.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/export.js"></script>
