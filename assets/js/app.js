@@ -2,7 +2,7 @@ var config = {
     geojson: "assets/js/birchplot.geojson", //birchplot.js needs to be saved to birchplot.geojson
     title: "Guardian DMS",
     layerName: "Plots",
-    hoverProperty: "Tap_Class", //add new property
+    hoverProperty: "PlotStatus", //add new property
     sortProperty: "Tap_Stem", //
     sortOrder: "desc"
 };
@@ -733,7 +733,7 @@ var searchControl = L.esri.Geocoding.Controls.geosearch({
 }).addTo(map);
 
 //legend
-/*var legend = L.control({position: 'bottomleft'});
+var legend = L.control({position: 'bottomleft'});
 
 legend.onAdd = function (map) {
 
@@ -752,7 +752,7 @@ legend.onAdd = function (map) {
     return div;
 };
 
-legend.addTo(map);*/
+legend.addTo(map);
 
 
 // Info control

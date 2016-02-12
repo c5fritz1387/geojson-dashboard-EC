@@ -111,14 +111,14 @@ body {
     background: #ffffff;
     margin-top: 80px;
     background-color:white;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 11px 11px 24px 0px rgba(0,0,0,0.6);
-    padding: 20px;
+    padding: 5px;
 }
 
 .legend i {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     float: left;
     margin-right: 8px;
     opacity: 0.9;
