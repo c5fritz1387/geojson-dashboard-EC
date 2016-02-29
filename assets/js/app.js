@@ -1,8 +1,10 @@
+var birchData = "assets/js/birchplot.geojson";
+
 var config = {
-    geojson: "assets/js/birchplot.geojson", //birchplot.js needs to be saved to birchplot.geojson
+    geojson: birchData, //birchplot.js needs to be saved to birchplot.geojson
     title: "Guardian DMS",
     layerName: "Plots",
-    hoverProperty: "Tap_Class", //add new property
+    hoverProperty: "PlotStatus", //add new property
     sortProperty: "Tap_Stem", //
     sortOrder: "desc"
 };
@@ -733,7 +735,11 @@ var searchControl = L.esri.Geocoding.Controls.geosearch({
 }).addTo(map);
 
 //legend
+<<<<<<< HEAD
 /*var legend = L.control({position: 'bottomleft'});
+=======
+var legend = L.control({position: 'bottomleft'});
+>>>>>>> refs/remotes/origin/master
 
 legend.onAdd = function (map) {
 
@@ -752,12 +758,16 @@ legend.onAdd = function (map) {
     return div;
 };
 
+<<<<<<< HEAD
 legend.addTo(map);*/
+=======
+legend.addTo(map);
+>>>>>>> refs/remotes/origin/master
 
 
 // Info control
 var info = L.control({
-    position: "bottomleft"
+    position: "bottomright"
 });
 
 // Custom info hover control
