@@ -1,0 +1,159 @@
+extends layout
+block content
+    #map
+    script(type='text/javascript').
+        
+        /*var map;
+        var birchplot;
+        
+        $(document).ready(function () {
+          map = L.map('map');
+
+        var tiles = L.tileLayer('http://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWNvdHJ1c3QiLCJhIjoibGo4TG5nOCJ9.QJnT2dgjL4_4EA7WlK8Zkw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                id: 'examples.map-i875mjb7'
+            });
+
+
+
+        map.on('load', function() {
+            requestUpdatedBirchplot();
+              });
+              /*map.on('moveend', function() {
+                requestUpdatedBirchplot();
+              });
+                map.setView([48.452206652753, -84.249802140202], 8).addLayer(tiles);
+
+
+            });
+            
+            function requestUpdatedBirchplot() {
+              $.ajax(
+                {
+                  type: 'GET',
+                  url: '/pg/plots',
+                  dataType: 'json',
+                  success: function (result) {
+                    parseResponseBirchplot(result);
+                  },
+                  error: function (req, status, error) {
+                    alert('Unable to get cadastral data');
+                  }
+                });
+            }
+            
+            function parseResponseBirchplot(data) {
+              if (birchplot !== undefined)
+              {
+                map.removeLayer(birchplot);
+              }
+              birchplot = new L.GeoJSON(data);
+              birchplot.on('featureparse', function(e) {
+                e.layer.setStyle({ color:  '#003300', weight: 2, fill: true, fillColor: '#009933' });
+              });
+
+
+
+              //birchplot.addGeoJSON(data);
+              map.addLayer(birchplot);
+            }*/
+
+        //var geojson;
+
+        var config = {
+            geojson: 'pg/plots' //birchplot.js needs to be saved to birchplot.geojson
+        };
+
+        // Basemap Layers
+
+        var highlightLayer = L.geoJson(null, {
+            pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 5,
+                    color: "#FFF",
+                    weight: 2,
+                    opacity: 1,
+                    fillColor: "#00FFFF",
+                    fillOpacity: 1,
+                    clickable: false
+                });
+            },
+            style: function(feature) {
+                return {
+                    color: "#00FFFF",
+                    weight: 2,
+                    opacity: 1,
+                    fillColor: "#00FFFF",
+                    fillOpacity: 0.5,
+                    clickable: false
+                };
+            }
+        });
+
+        var featureLayer = L.geoJson(null, {
+            filter: function(feature, layer) {
+                return feature.geometry.coordinates[0] !== 0 && feature.geometry.coordinates[1] !== 0;
+            },
+            style: function(feature) {
+                return {
+                    color: "#E01976",
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.5,
+                    fillColor: "#E01976"
+                };
+            },
+
+
+            onEachFeature: function(feature, layer) {
+                if (feature.properties) {
+                    layer.on({
+                        click: function(e) {
+                            identifyFeature(L.stamp(layer));
+                            highlightLayer.clearLayers();
+                            highlightLayer.addData(featureLayer.getLayer(L.stamp(layer)).toGeoJSON());
+                        },
+                        mouseover: function(e) {
+                            if (config.hoverProperty) {
+                                $(".info-control").html(feature.properties[config.hoverProperty]);
+                                $(".info-control").show();
+                            }
+                        },
+                        mouseout: function(e) {
+                            $(".info-control").hide();
+                        }
+                    });
+                }
+            }
+        });
+
+        // Fetch the GeoJSON file
+        $.getJSON(config.geojson, function(data) {
+            geojson = data
+            features = $.map(geojson.features, function(feature) {
+                return feature.properties;
+            });
+            featureLayer.addData(data);
+            console.log(features)
+            //buildConfig();
+            $("#loading-mask").hide();
+        });
+
+        var map = L.map('map').setView([48.452206652753, -84.249802140202], 13);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            id: 'mapbox.streets'
+
+        }).addTo(map);
+
+        map.addLayer(featureLayer);
+
+
+
+

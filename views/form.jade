@@ -1,0 +1,121 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    |     
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    |     
+    meta(name='viewport', content='initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width')
+    |     
+    meta(name='mobile-web-app-capable', content='yes')
+    |     
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    |     
+    meta(name='description', content='')
+    |     
+    meta(name='keywords', content='')
+    |     
+    meta(name='author', content='Charles Fritz')
+    |     
+    title.title Guardian DMS
+    |     
+    link(href='bower_components/mapbox.js/mapbox.css', rel='stylesheet')
+    |     
+    link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.min.css')
+    |     
+    link(rel='stylesheet', href='bower_components/components-font-awesome/css/font-awesome.min.css')
+    |     
+    link(rel='stylesheet', href='bower_components/leaflet/dist/leaflet.css')
+    |     
+    link(rel='stylesheet', href='bower_components/bootstrap-table/dist/bootstrap-table.min.css')
+    |     
+    link(rel='stylesheet', href='bower_components/c3/c3.min.css')
+    |     
+    link(rel='stylesheet', href='bower_components/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css')
+    |     
+    link(rel='stylesheet', href='bower_components/leaflet.markerclusterer/dist/MarkerCluster.css')
+    |     
+    link(rel='stylesheet', href='bower_components/leaflet.markerclusterer/dist/MarkerCluster.Default.css')
+    |     
+    link(rel='stylesheet', href='bower_components/jQuery-QueryBuilder/dist/css/query-builder.default.min.css')
+    |     
+    link(rel='stylesheet', href='/vendor/leaflet/leaflet-print/dist/easyPrint.css')
+    |     
+    link(rel='stylesheet', href='/stylesheets/app.css')
+    // link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.css' rel='stylesheet' /
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src='//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      |       
+      script(src='//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    body  
+        form(action='http://localhost:3000/dataAdded', method='post', enctype='multipart/form-data').form-horizontal
+          fieldset
+            // Form Name
+            legend Add Trees
+            // Text input
+            .form-group
+              label.col-md-4.control-label(for='Tree ID') Tree ID
+              .col-md-2
+                input.form-control.input-md(id='Tree ID', name='Tree ID', type='text', placeholder='', required='')
+                span.help-block e.g. T01
+            // Text input
+            .form-group
+              label.col-md-4.control-label(for='Site ID') Site ID
+              .col-md-2
+                input.form-control.input-md(id='Site ID', name='Site ID', type='text', placeholder='', required='')
+                span.help-block e.g. BW40
+            // Text input
+            .form-group
+              label.col-md-4.control-label(for='Plot ID') Plot ID
+              .col-md-2
+                input.form-control.input-md(id='Plot ID', name='Plot ID', type='text', placeholder='', required='')
+                span.help-block e.g. P02
+            // Textarea
+            .form-group
+              label.col-md-4.control-label(for='Access Comments') Access Comments
+              .col-md-4
+                textarea.form-control(id='Access Comments', name='Access Comments')
+            // Button
+            .form-group
+              label.col-md-4.control-label(for='Add Tree')
+              .col-md-4
+                button.btn.btn-primary(id='Add Tree', name='Add Tree') Submit
+    script(src='/bower_components/mapbox.js/mapbox.js')
+    |     
+    script(src='/bower_components/jquery/dist/jquery.min.js')
+    |    
+    //script(src='/vendor/leaflet/Leaflet.js')
+    |     
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+    |     
+    script(src='/bower_components/bootstrap-table/dist/bootstrap-table.min.js')
+    |     
+    script(src='/bower_components/d3/d3.min.js')
+    |     
+    script(src='/bower_components/c3/c3.min.js')
+    |     
+    script(src='/bower_components/esri-leaflet/dist/esri-leaflet.js')
+    |     
+    script(src='/vendor/esri/esri-leaflet-geocoder.js')
+    |     
+    script(src='/bower_components/alasql/dist/alasql.min.js')
+    |     
+    script(src='/bower_components/jQuery-QueryBuilder/dist/js/query-builder.standalone.min.js')
+    |     
+    script(src='/bower_components/tableExport.jquery.plugin/tableExport.min.js')
+    |     
+    script(src='/bower_components/file-saver.js/FileSaver.js')
+    |     
+    script(src='/bower_components/html2canvas/build/html2canvas.min.js')
+    |     
+    script(src='/bower_components/jspdf/dist/jspdf.min.js')
+    |     
+    script(src='/bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js')
+    |     
+    script(src='/vendor/leaflet/leaflet-print/dist/leaflet.easyPrint.js')
+    |     
+    script(src='/javascripts/leaflet-markercluster.js')
+    |     
+    script(src='/javascripts/export.js')
+    // script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script

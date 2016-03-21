@@ -1,0 +1,326 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    |     
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    |     
+    meta(name='viewport', content='initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width')
+    |     
+    meta(name='mobile-web-app-capable', content='yes')
+    |     
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    |     
+    meta(name='description', content='')
+    |     
+    meta(name='keywords', content='')
+    |     
+    meta(name='author', content='Charles Fritz')
+    |     
+    title.title Guardian DMS
+    |     
+    link(href='bower_components/mapbox.js/mapbox.css', rel='stylesheet')
+    |     
+    link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.min.css')
+    |     
+    link(rel='stylesheet', href='bower_components/components-font-awesome/css/font-awesome.min.css')
+    |     
+    link(rel='stylesheet', href='bower_components/leaflet/dist/leaflet.css')
+    |     
+    link(rel='stylesheet', href='bower_components/bootstrap-table/dist/bootstrap-table.min.css')
+    |     
+    link(rel='stylesheet', href='bower_components/c3/c3.min.css')
+    |     
+    link(rel='stylesheet', href='bower_components/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css')
+    |     
+    link(rel='stylesheet', href='bower_components/leaflet.markerclusterer/dist/MarkerCluster.css')
+    |     
+    link(rel='stylesheet', href='bower_components/leaflet.markerclusterer/dist/MarkerCluster.Default.css')
+    |     
+    link(rel='stylesheet', href='bower_components/jQuery-QueryBuilder/dist/css/query-builder.default.min.css')
+    |     
+    link(rel='stylesheet', href='/vendor/leaflet/leaflet-print/dist/easyPrint.css')
+    |     
+    link(rel='stylesheet', href='/stylesheets/app.css')
+    // link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.css' rel='stylesheet' /
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src='//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      |       
+      script(src='//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  |   
+  body
+    #loading-mask.modal-backdrop
+      .loading-indicator
+        .progress.progress-striped.active
+          .progress-bar.progress-bar-info.loading-bar
+    |     
+    .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.icon-bar
+            |             
+            span.icon-bar
+            |             
+            span.icon-bar
+          |           
+          span.navbar-brand.title GeoJSON Dashboard
+        |         
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a#about-btn(href='#', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.fa.fa-question-circle.fa-white
+                |  About
+            |             
+            li
+              a#chart-btn(href='#', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.fa.fa-bar-chart.fa-white
+                |  Data Charts
+            |             
+            li
+              a#extent-btn(href='#', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.fa.fa-arrows-alt.fa-white
+                |  Feature Extent
+            |             
+            li.hidden-md.hidden-lg
+              a#filter-btn(href='#', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.fa.fa-filter.fa-white
+                |  Filter Data
+            |             
+            li.dropdown
+              a.dropdown-toggle(href='#', role='button', data-toggle='dropdown')
+                i.fa.fa-laptop.fa-white
+                |  
+                span#view Split View 
+                b.caret
+              |               
+              ul.dropdown-menu
+                li
+                  a#map-graph(href='#', data-toggle='collapse', data-target='.navbar-collapse.in', name='view')
+                    i.fa.fa-th-large
+                    |  Split View
+                |                 
+                li
+                  a#map-only(href='#', data-toggle='collapse', data-target='.navbar-collapse.in', name='view')
+                    i.fa.fa-globe
+                    |  Map View
+                |                 
+                li
+                  a#graph-only(href='#', data-toggle='collapse', data-target='.navbar-collapse.in', name='view')
+                    i.fa.fa-table
+                    |  Table View
+    |     
+    #map-container
+      #map
+    |     
+    #table-container
+      #toolbar(style='width: 400px;')
+        .btn-group(role='group')
+          button.btn.btn-default(type='button', data-toggle='modal', data-target='#filterModal')
+            i.fa.fa-filter
+            |  Filter Data
+          |           
+          .btn-group
+            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+              i.fa.fa-cloud-download
+              |  Export Data 
+              span.caret
+            |             
+            ul.dropdown-menu
+              li
+                a#download-csv-btn(href='#')
+                  i.fa.fa-file-text-o
+                  |  CSV
+              |               
+              li
+                a#download-excel-btn(href='#')
+                  i.fa.fa-file-excel-o
+                  |  Excel
+              |               
+              li
+                a#download-pdf-btn(href='#')
+                  i.fa.fa-file-pdf-o
+                  |  PDF
+        |         
+        span#feature-count.text-muted(style='padding-left: 15px;')
+      |       
+      table#table
+    |     
+    #aboutModal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+            |             
+            h4.modal-title Welcome to the Guardian DMS
+          |           
+          .modal-body
+            ul#aboutTabs.nav.nav-tabs
+              li.active
+                a(href='#about-tab', data-toggle='tab')
+                  i.fa.fa-question-circle
+                  |  About the project
+              |               
+              li
+                a(href='#feature-tab', data-toggle='tab')
+                  i.fa.fa-gear
+                  |  How to
+            |             
+            #aboutTabsContent.tab-content
+              #about-tab.tab-pane.fade.active.in
+                p
+                  | A flexible geospatial data viewer for managers and stakeholders involved with the Northeast Superior Regional Chiefs Forum (NSRCF) Guardan Program. Dashboard is based on the configurable framework for building a geographic &quot;data dashboard&quot; from a GeoJSON file, created by developers at Fulcrum. Open source, MIT licensed, and available on 
+                  a(href='https://github.com/fulcrumapp/geojson-dashboard', target='_blank') GitHub
+                  | .
+                |                  
+                .panel.panel-primary
+                  .panel-heading Features
+                  |                   
+                  ul.list-group
+                    li.list-group-item Built using active open source components
+                    |                     
+                    li.list-group-item Enables users to visualize data from Summer 2015 Guardian program 
+                    // li class="list-group-item"></li
+                    li.list-group-item Interactive data table with sorting, searching, column toggling, and data export
+                    |                     
+                    li.list-group-item
+                      | Advanced charting via 
+                      a(href='http://c3js.org/', target='_blank') C3.js
+                      | , the D3-based reusable chart library
+              |               
+              #feature-tab.tab-pane.fade
+                p
+                  | A flexible geospatial data viewer for managers and stakeholders involved with the Northeast Superior Regional Chiefs Forum (NSRCF) Guardan Program. Dashboard is based on the configurable framework for building a geographic &quot;data dashboard&quot; from a GeoJSON file, created by developers at Fulcrum. Open source, MIT licensed, and available on.
+                |                 
+                .panel.panel-primary
+                  .panel-heading Features
+                  |                   
+                  ul.list-group
+                    li.list-group-item Built using active open source components
+                    |                     
+                    li.list-group-item Enables users to visualize data from Summer 2015 Guardian program 
+                    // li class="list-group-item"></li
+                    li.list-group-item Interactive data table with sorting, searching, column toggling, and data export
+                    |                     
+                    li.list-group-item
+                      | Advanced charting via 
+                      a(href='http://c3js.org/', target='_blank') C3.js
+                      | , the D3-based reusable chart library
+          |           
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+    |     
+    #chartModal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+            |             
+            h4.modal-title Charts
+          |           
+          .modal-body(style='overflow: auto;')
+            div(role='tabpanel')
+              ul.nav.nav-tabs(role='tablist')
+                li.active(role='presentation')
+                  a(href='#status-chart', aria-controls='reports', role='tab', data-toggle='tab') Status
+                |                 
+                li(role='presentation')
+                  a(href='#team-chart', aria-controls='charts', role='tab', data-toggle='tab') Team
+                |                 
+                li(role='presentation')
+                  a(href='#size-chart', aria-controls='charts', role='tab', data-toggle='tab') Size
+                // li role="presentation"><a href="#species-chart" aria-controls="charts" role="tab" data-toggle="tab">Species</a></li
+              |               
+              .tab-content
+                #status-chart.tab-pane.active(role='tabpanel')
+                |                 
+                #team-chart.tab-pane(role='tabpanel')
+                |                 
+                #size-chart.tab-pane(role='tabpanel')
+                // div role="tabpanel" class="tab-pane" id="species-chart"></div
+          |           
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+    |     
+    #filterModal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+            |             
+            h4.modal-title
+              | Filter Data
+              span#record-count.badge.pull-right(style='margin-right: 15px; margin-top: 2px;')
+          |           
+          .modal-body
+            #query-builder
+          |           
+          .modal-footer
+            button#view-sql-btn.btn.btn-default.pull-left(type='button')
+              i.fa.fa-database
+              |  SQL
+            |             
+            button#reset-filter-btn.btn.btn-info(type='button')
+              i.fa.fa-undo
+              |  Reset Filter
+            |             
+            button#apply-filter-btn.btn.btn-primary(type='button')
+              i.fa.fa-filter
+              |  Apply Filter
+    |     
+    #featureModal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+            |             
+            h4.modal-title Feature Info
+          |           
+          #feature-info.modal-body
+          |           
+          .modal-footer
+            button.btn.btn-primary(type='button', data-dismiss='modal') Close
+    // script src="https://cdn.jsdelivr.net/leaflet.esri/2.0.0-beta.7/esri-leaflet.js"></script
+    // script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script
+    script(src='/bower_components/mapbox.js/mapbox.js')
+    |     
+    script(src='/bower_components/jquery/dist/jquery.min.js')
+    |    
+    //script(src='/vendor/leaflet/Leaflet.js')
+    |     
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+    |     
+    script(src='/bower_components/bootstrap-table/dist/bootstrap-table.min.js')
+    |     
+    script(src='/bower_components/d3/d3.min.js')
+    |     
+    script(src='/bower_components/c3/c3.min.js')
+    |     
+    script(src='/bower_components/esri-leaflet/dist/esri-leaflet.js')
+    |     
+    script(src='/vendor/esri/esri-leaflet-geocoder.js')
+    |     
+    script(src='/bower_components/alasql/dist/alasql.min.js')
+    |     
+    script(src='/bower_components/jQuery-QueryBuilder/dist/js/query-builder.standalone.min.js')
+    |     
+    script(src='/bower_components/tableExport.jquery.plugin/tableExport.min.js')
+    |     
+    script(src='/bower_components/file-saver.js/FileSaver.js')
+    |     
+    script(src='/bower_components/html2canvas/build/html2canvas.min.js')
+    |     
+    script(src='/bower_components/jspdf/dist/jspdf.min.js')
+    |     
+    script(src='/bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js')
+    |     
+    script(src='/vendor/leaflet/leaflet-print/dist/leaflet.easyPrint.js')
+    |     
+    script(src='/javascripts/leaflet-markercluster.js')
+    |     
+    script(src='/javascripts/map.js')
+    |     
+    script(src='/javascripts/export.js')
+    // script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script
