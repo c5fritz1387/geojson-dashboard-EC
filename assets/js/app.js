@@ -757,7 +757,6 @@ legend.onAdd = function (map) {
 legend.addTo(map);
 
 
-
 // Info control
 var info = L.control({
     position: "bottomright"
