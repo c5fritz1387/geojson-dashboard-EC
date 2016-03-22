@@ -735,11 +735,7 @@ var searchControl = L.esri.Geocoding.Controls.geosearch({
 }).addTo(map);
 
 //legend
-<<<<<<< HEAD
-/*var legend = L.control({position: 'bottomleft'});
-=======
 var legend = L.control({position: 'bottomleft'});
->>>>>>> refs/remotes/origin/master
 
 legend.onAdd = function (map) {
 
@@ -758,11 +754,8 @@ legend.onAdd = function (map) {
     return div;
 };
 
-<<<<<<< HEAD
-legend.addTo(map);*/
-=======
 legend.addTo(map);
->>>>>>> refs/remotes/origin/master
+
 
 
 // Info control
